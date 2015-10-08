@@ -4,7 +4,7 @@
 // ******************** //
 var userScore = 0;
 var enemyScore = 0;
-
+var theThrow = '';
 
 // ******************** //
 //    Enemy Components  //
@@ -18,10 +18,6 @@ var enemyThrowStrings = [
     'scissors'
 ];
 
-// Randomize An Index Number From "EnemyThrowStrings"
-var randomIndex = Math.floor(Math.random()*enemyThrowStrings.length);
-console.log(enemyThrowStrings[randomIndex]);
-
 
 // ******************** //
 //    User Components   //
@@ -29,10 +25,26 @@ console.log(enemyThrowStrings[randomIndex]);
 function userThrow(userInputClass){
 	$(userInputClass).click(function(e){
 		e.preventDefault();
-		var theThrow = $(this).attr("class");
+		theThrow = $(this).attr("class");
 		console.log(theThrow);
 	});
 }
+
+// ******************** //
+//    Game Logic   //
+// ******************** //
+function theBattle(theControls){
+	$(theControls).click(function(){
+		// Randomize An Index Number From "EnemyThrowStrings"
+		var randomIndex = Math.floor(Math.random()*enemyThrowStrings.length);
+		var enemyThrow = enemyThrowStrings[randomIndex];
+		console.log(enemyThrow);
+		if(theThrow == enemyThrow){
+			console.log('tied');
+		}
+	});
+}
+
 
 // ******************** //
 // ******************** //
@@ -40,11 +52,13 @@ function userThrow(userInputClass){
 // ******************** //
 // ******************** //
 
+
 $(function(){
-// ******************** //
-//       User Input     //
-// ******************** //
-userThrow('.rock');
-userThrow('.paper');
-userThrow('.scissors');
+	// ******************** //
+	//       User Input     //
+	// ******************** //
+	userThrow('.rock');
+	userThrow('.paper');
+	userThrow('.scissors');
+	theBattle('#controls a');
 });
