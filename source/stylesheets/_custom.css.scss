@@ -1,2 +1,134 @@
 // Add custom css here or create more partials
 // and import them in all.css.scss!
+
+
+// Font Imports
+@font-face {
+    font-family: 'nintenderregular';
+    src: url('../fonts/nintender_wip-webfont.eot');
+    src: url('../fonts/nintender_wip-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/nintender_wip-webfont.woff2') format('woff2'),
+         url('../fonts/nintender_wip-webfont.woff') format('woff'),
+         url('../fonts/nintender_wip-webfont.ttf') format('truetype'),
+         url('../fonts/nintender_wip-webfont.svg#nintenderregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+// Gameboy Styles
+.gameboy-background{
+	background-color: #eeeeee;
+	box-shadow: 2px 2px 0px #e0e0e0;
+	height: 500px;
+	width: 300px;
+	border-radius: 0.5em 0.5em 5em 0.5em;
+	margin: 0 auto;
+	position: relative;
+}
+
+.screen-border{
+  background-color: #757575;
+  height: 40%;
+  width: 80%;
+  border-radius: 1em 1em 3em 1em;
+  margin-top: 14%;
+  position: absolute;
+  margin-left: 10%;
+}
+.screen-border:after{
+	font-family: 'nintenderregular';
+	content: 'RutgersCB';
+	color: #546e7a;
+}
+
+.screen{
+	background-color: #7cb342;
+	height: 75%;
+	width: 75%;
+	border-radius: 0.3em;
+	border: 2px #333 solid;
+	margin: 10% auto;
+	position: relative;
+}
+
+.dpad{
+	font-size: 7em;
+	text-shadow: 0px 4px 0px #9e9e9e;
+  bottom: 20%;
+  left: 10%;
+  position: absolute;
+  cursor: pointer;
+}
+.dpad:after{
+  font-family: 'nintenderregular';
+  content: 'Rock';
+  color: #546e7a;
+  font-size: 10px;
+  position: absolute;
+  text-shadow: none;
+  left: 32%;
+  bottom: -5%;
+}
+
+.button{	
+	position: absolute;
+	border-radius: 50%;
+	background-color: #880e4f;
+	box-shadow: 0px 2px 0px #9e9e9e;
+	width: 40px;
+	height: 40px;
+  transform: rotate(-20deg);
+  cursor: pointer;
+}
+
+.scissors{
+	top: 69%;
+	right: 30%;
+}
+.scissors:after{
+  font-family: 'nintenderregular';
+  content: 'Scissors';
+  color: #546e7a;
+  font-size: 10px;
+  position: absolute;
+  text-shadow: none;
+  left: -10%;
+  bottom: -45%;
+}
+
+.paper{
+	top: 65%;
+	right: 10%;
+}
+.paper:after{
+  font-family: 'nintenderregular';
+  content: 'Paper';
+  color: #546e7a;
+  font-size: 10px;
+  position: absolute;
+  text-shadow: none;
+  left: 7%;
+  bottom: -45%;
+}
+
+.speakers{
+	position: absolute;
+  width: 80px;
+  transform: rotate(-111deg);
+  bottom: 10%;
+  right: 11%;
+  opacity: 0.7;
+}
+.speaker-right{
+	margin-top: -4px;
+	position: absolute;
+}
+.speaker-left i,
+.speaker-right i{
+	font-size: 2em;
+}
+.speaker-left i:nth-child(2),
+.speaker-right i:nth-child(2){
+	margin-left: -12px;;
+}
