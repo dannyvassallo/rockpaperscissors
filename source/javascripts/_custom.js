@@ -27,7 +27,9 @@ function userThrow(userInputClass){
 	$(userInputClass).click(function(e){
 		e.preventDefault();
 		theThrow = $(this).attr("class");
-		console.log("USER THREW: "+theThrow);
+		theThrow = theThrow.replace('button ', '');
+		theThrow = theThrow.replace('control ', '');
+		alert("USER THREW: "+theThrow);
 	});
 }
 
@@ -40,33 +42,33 @@ function theBattle(theControls){
 		var randomIndex = Math.floor(Math.random()*enemyThrowStrings.length);
 		// Enemy's Throw
 		enemyThrow = enemyThrowStrings[randomIndex];
-		console.log("ENEMY THREW: "+enemyThrow);
+		alert("ENEMY THREW: "+enemyThrow);
 		// Tie
 		if(theThrow == enemyThrow){
-			console.log('tied TIE GAME');
+			alert('tied TIE GAME');
 		}
 		// User Throws Rock
 		else if(theThrow == 'rock'){
 			if(enemyThrow == 'scissors'){
-				console.log('rock beats scissors USER WINS');
+				alert('rock beats scissors USER WINS');
 			} else if(enemyThrow == 'paper'){
-				console.log('paper covers rock USER LOSES');
+				alert('paper covers rock USER LOSES');
 			}
 		}
 		// User Throws Scissors
 		else if(theThrow == 'scissors'){
 			if(enemyThrow == 'rock'){
-				console.log('rock beats scissors USER LOSES');
+				alert('rock beats scissors USER LOSES');
 			} else if(enemyThrow == 'paper'){
-				console.log('scissors cut paper USER WINS');
+				alert('scissors cut paper USER WINS');
 			}
 		}
 		// User Throws Paper
 		else if(theThrow == 'paper'){
 			if(enemyThrow == 'rock'){
-				console.log('paper covers rock USER WINS');
+				alert('paper covers rock USER WINS');
 			} else if(enemyThrow == 'scissors'){
-				console.log('scissors cut paper USER LOSES');
+				alert('scissors cut paper USER LOSES');
 			}
 		}		
 	});
@@ -87,5 +89,5 @@ $(function(){
 	userThrow('.rock');
 	userThrow('.paper');
 	userThrow('.scissors');
-	theBattle('#controls a');
+	theBattle('#gameboy .control');
 });
