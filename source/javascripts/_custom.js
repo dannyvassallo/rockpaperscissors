@@ -34,6 +34,15 @@ function userThrow(userInputClass){
 }
 
 // ******************** //
+//       User Input     //
+// ******************** //
+userThrow('.rock');
+userThrow('.paper');
+userThrow('.scissors');
+theBattle('#gameboy .control');
+
+
+// ******************** //
 //    Game Logic   //
 // ******************** //
 function theBattle(theControls){
@@ -83,11 +92,6 @@ function theBattle(theControls){
 
 
 $(function(){
-	// ******************** //
-	//       User Input     //
-	// ******************** //
-	userThrow('.rock');
-	userThrow('.paper');
-	userThrow('.scissors');
-	theBattle('#gameboy .control');
+
+
 });
