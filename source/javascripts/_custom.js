@@ -83,7 +83,7 @@ function rpsAnimSeq(){
 		} else if(gameStatus == 'lose'){
 			clearClasses();
 			$('.animation-container .fa').addClass('fa-github-alt');
-			$('.animation-container .message').html("YOU LOSE!");
+			$('.animation-container .message').html("OCTO WINS!");
 			$('.animation-container').fadeIn(600).delay(400).fadeOut(600);	
 		} else if(gameStatus == 'tie'){
 			clearClasses();
