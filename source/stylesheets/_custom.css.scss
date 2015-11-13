@@ -192,3 +192,25 @@ body{
 .speaker-right i:nth-child(2){
 	margin-left: -12px;;
 }
+.score, .round-counter{
+  font-family: 'early_gameboyregular';
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 10px;
+}
+.round-counter{
+  text-align: right;  
+  right: 10px;
+  top: 15px;  
+}
+.user-score{
+  text-align: left;
+  top: 15px;
+  left: 10px;
+}
+.enemy-score{
+  text-align: right;
+  bottom: 2px;
+  right: 10px;
+}
