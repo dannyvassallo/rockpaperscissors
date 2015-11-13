@@ -47,7 +47,7 @@ function rpsAnimSeq(){
 		clearClasses();
 		$('.animation-container .fa').addClass(faIcon);
 		$('.animation-container .message').html(rps);
-		$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');	
+		$('.animation-container').fadeIn(600).delay(200).fadeOut(600);	
 	}	
 	anim('rock');
 	window.setTimeout(function(){
@@ -58,34 +58,44 @@ function rpsAnimSeq(){
 	}, 2800);
 	window.setTimeout(function(){		
 		clearClasses();
-		$('.animation-container .fa').addClass('fa-github-alt');
-		$('.animation-container .message').html("ENEMY SHOOTS...");
-		$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');	
+		$('.animation-container .fa').addClass('fa-smile-o');
+		$('.animation-container .message').html("YOU SHOT:");
+		$('.animation-container').fadeIn(600).delay(200).fadeOut(600);	
 	}, 4200);	
 	window.setTimeout(function(){		
+		anim(theThrow);
+	}, 5600);	
+	window.setTimeout(function(){		
+		clearClasses();
+		$('.animation-container .fa').addClass('fa-github-alt');
+		$('.animation-container .message').html("OCTO SHOT:");
+		$('.animation-container').fadeIn(600).delay(200).fadeOut(600);	
+	}, 7000);	
+	window.setTimeout(function(){		
 		anim(enemyThrow);
-	}, 5600);
+	}, 8400);
 	window.setTimeout(function(){
 		if(gameStatus == 'win'){
 			clearClasses();
 			$('.animation-container .fa').addClass('fa-smile-o');
 			$('.animation-container .message').html("YOU WIN!");
-			$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');	
+			$('.animation-container').fadeIn(600).delay(400).fadeOut(600);	
 		} else if(gameStatus == 'lose'){
 			clearClasses();
 			$('.animation-container .fa').addClass('fa-github-alt');
 			$('.animation-container .message').html("YOU LOSE!");
-			$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');	
+			$('.animation-container').fadeIn(600).delay(400).fadeOut(600);	
 		} else if(gameStatus == 'tie'){
 			clearClasses();
 			$('.animation-container .fa').addClass('fa-github-alt');
 			$('.animation-container .message').html("TIE GAME!");
-			$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');				
+			$('.animation-container').fadeIn(600).delay(400).fadeOut(600);				
 		}
-	}, 7000);	
+	}, 10000);	
 	window.setTimeout(function(){
+		// re-enable controls and update scores
 		updateScores();			
-	}, 7000);
+	}, 10000);
 }
 
 // ******************** //
