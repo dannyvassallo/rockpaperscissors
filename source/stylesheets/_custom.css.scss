@@ -214,3 +214,18 @@ body{
   bottom: 2px;
   right: 10px;
 }
+.animation-container{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  display: none;  
+}
+.animation-container i{
+  display: block;
+  font-size: 70px;
+  margin-top: 25px;
+}
+.animation-container .message{
+  font-family: 'early_gameboyregular';
+  margin-top: -10px
+}

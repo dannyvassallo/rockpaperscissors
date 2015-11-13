@@ -5,6 +5,7 @@
 var userScore = 0;
 var enemyScore = 0;
 var roundCounter = 0;
+var userWon;
 var theThrow = '';
 var enemyThrow = '';
 
@@ -31,8 +32,60 @@ function userThrow(userInputClass){
 		theThrow = $(this).attr("class");
 		theThrow = theThrow.replace('button ', '');
 		theThrow = theThrow.replace('control ', '');
-		alert("USER THREW: "+theThrow);
+		rpsAnimSeq();
+		// alert("USER THREW: "+theThrow);
 	});
+}
+
+// the rock paper scissors shoot animation
+function rpsAnimSeq(){
+	function clearClasses(){
+		$('.animation-container .fa').removeClass('fa-hand-scissors-o').removeClass('fa-hand-rock-o').removeClass('fa-hand-paper-o').removeClass('fa-github-alt').removeClass('fa-smile-o');
+	}
+	function anim(rps){
+		var faIcon = 'fa-hand-'+rps+'-o';
+		clearClasses();
+		$('.animation-container .fa').addClass(faIcon);
+		$('.animation-container .message').html(rps);
+		$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');	
+	}	
+	anim('rock');
+	window.setTimeout(function(){
+		anim('paper');
+	}, 1400);
+	window.setTimeout(function(){		
+		anim('scissors');
+	}, 2800);
+	window.setTimeout(function(){		
+		clearClasses();
+		$('.animation-container .fa').addClass('fa-github-alt');
+		$('.animation-container .message').html("ENEMY SHOOTS...");
+		$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');	
+	}, 4200);	
+	window.setTimeout(function(){		
+		anim(enemyThrow);
+	}, 5600);
+	window.setTimeout(function(){
+		if(gameStatus == 'win'){
+			clearClasses();
+			$('.animation-container .fa').addClass('fa-smile-o');
+			$('.animation-container .message').html("YOU WIN!");
+			$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');	
+		} else if(gameStatus == 'lose'){
+			clearClasses();
+			$('.animation-container .fa').addClass('fa-github-alt');
+			$('.animation-container .message').html("YOU LOSE!");
+			$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');	
+		} else if(gameStatus == 'tie'){
+			clearClasses();
+			$('.animation-container .fa').addClass('fa-github-alt');
+			$('.animation-container .message').html("TIE GAME!");
+			$('.animation-container').fadeIn('slow').delay(200).fadeOut('slow');				
+		}
+	}, 7000);	
+	window.setTimeout(function(){
+		updateScores();			
+	}, 7000);
 }
 
 // ******************** //
@@ -67,48 +120,51 @@ function theBattle(theControls){
 		var randomIndex = Math.floor(Math.random()*enemyThrowStrings.length);
 		// Enemy's Throw
 		enemyThrow = enemyThrowStrings[randomIndex];
-		alert("ENEMY THREW: "+enemyThrow);
+		// alert("ENEMY THREW: "+enemyThrow);
 		// Tie
 		if(theThrow == enemyThrow){
-			alert('tied TIE GAME');
+			// alert('tied TIE GAME');
+			gameStatus = 'tie';
 			roundCounter+=1;
-			updateScores();
 		}
 		// User Throws Rock
 		else if(theThrow == 'rock'){
 			if(enemyThrow == 'scissors'){
-				alert('rock beats scissors USER WINS');
+				// alert('rock beats scissors USER WINS');
+				gameStatus = 'win';
 				userScore+=1;
 			} else if(enemyThrow == 'paper'){
-				alert('paper covers rock USER LOSES');
+				// alert('paper covers rock USER LOSES');
+				gameStatus = 'lose';
 				enemyScore+=1;
 			}
 			roundCounter+=1;
-			updateScores();
 		}
 		// User Throws Scissors
 		else if(theThrow == 'scissors'){
 			if(enemyThrow == 'rock'){
-				alert('rock beats scissors USER LOSES');
+				// alert('rock beats scissors USER LOSES');
+				gameStatus = 'lose';
 				userScore+=1;
 			} else if(enemyThrow == 'paper'){
-				alert('scissors cut paper USER WINS');
+				// alert('scissors cut paper USER WINS');
+				gameStatus = 'win';
 				enemyScore+=1;
 			}
 			roundCounter+=1;
-			updateScores();
 		}
 		// User Throws Paper
 		else if(theThrow == 'paper'){
 			if(enemyThrow == 'rock'){
-				alert('paper covers rock USER WINS');
+				// alert('paper covers rock USER WINS');
+				gameStatus = 'win';
 				userScore+=1;
 			} else if(enemyThrow == 'scissors'){
-				alert('scissors cut paper USER LOSES');
+				// alert('scissors cut paper USER LOSES');
+				gameStatus = 'lose';
 				enemyScore+=1;
 			}
 			roundCounter+=1;
-			updateScores();
 		}		
 	});
 }
