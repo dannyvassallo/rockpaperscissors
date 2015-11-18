@@ -14,9 +14,9 @@ var enemyThrow = '';
 // ******************** //
 // Enemy Throw String Array
 var enemyThrowStrings = [
-    'rock',
-    'paper',
-    'scissors'
+	'rock',
+	'paper',
+	'scissors'
 ];
 
 
@@ -36,66 +36,70 @@ function userThrow(){
 
 // the rock paper scissors shoot animation
 function rpsAnimSeq(){
+	unbindControls();
+
+	var animationClock = 0;
+	$('.score').fadeIn(450).delay(600);
+	$('.round-counter').fadeIn(450).delay(600);	
+
 	function clearClasses(){
-		$('.animation-container .fa').removeClass('fa-hand-scissors-o').removeClass('fa-hand-rock-o').removeClass('fa-hand-paper-o').removeClass('fa-github-alt').removeClass('fa-smile-o');
-	}
-	function anim(rps){
-		// unbind controls during animation
-		unbindControls();
+		$('.animation-container .fa').removeClass('fa-hand-scissors-o').removeClass('fa-hand-rock-o').removeClass('fa-hand-paper-o').removeClass('fa-github-alt').removeClass('fa-smile-o').removeClass('fa-thumbs-up').removeClass('fa-hand-peace-o').removeClass('fa-gamepad');
+	}	
+	function anim800(rps){		
 		var faIcon = 'fa-hand-'+rps+'-o';
 		clearClasses();
 		$('.animation-container .fa').addClass(faIcon);
 		$('.animation-container .message').html(rps);
-		$('.animation-container').fadeIn(600).delay(200).fadeOut(600);	
+		$('.animation-container').fadeIn(250).delay(300).fadeOut(250);	
 	}	
-	anim('rock');
-	window.setTimeout(function(){
-		anim('paper');
-	}, 1400);
-	window.setTimeout(function(){		
-		anim('scissors');
-	}, 2800);
-	window.setTimeout(function(){		
+	function anim1500(faClass, message){		
 		clearClasses();
-		$('.animation-container .fa').addClass('fa-smile-o');
-		$('.animation-container .message').html("YOU SHOT:");
-		$('.animation-container').fadeIn(600).delay(200).fadeOut(600);	
-	}, 4200);	
-	window.setTimeout(function(){		
-		anim(theThrow);
-	}, 5600);	
-	window.setTimeout(function(){		
-		clearClasses();
-		$('.animation-container .fa').addClass('fa-github-alt');
-		$('.animation-container .message').html("OCTO SHOT:");
-		$('.animation-container').fadeIn(600).delay(200).fadeOut(600);	
-	}, 7000);	
-	window.setTimeout(function(){		
-		anim(enemyThrow);
-	}, 8400);
+		$('.animation-container .fa').addClass(faClass);
+		$('.animation-container .message').html(message);
+		$('.animation-container').fadeIn(450).delay(600).fadeOut(450);	
+	}		
+
+	anim800('rock');
 	window.setTimeout(function(){
-		if(gameStatus == 'win'){
-			clearClasses();
-			$('.animation-container .fa').addClass('fa-smile-o');
-			$('.animation-container .message').html("YOU WIN!");
-			$('.animation-container').fadeIn(600).delay(400).fadeOut(600);	
-		} else if(gameStatus == 'lose'){
-			clearClasses();
-			$('.animation-container .fa').addClass('fa-github-alt');
-			$('.animation-container .message').html("OCTO WINS!");
-			$('.animation-container').fadeIn(600).delay(400).fadeOut(600);	
-		} else if(gameStatus == 'tie'){
-			clearClasses();
-			$('.animation-container .fa').addClass('fa-github-alt');
-			$('.animation-container .message').html("TIE GAME!");
-			$('.animation-container').fadeIn(600).delay(400).fadeOut(600);				
-		}
-	}, 10000);	
+		anim800('paper');
+	}, animationClock+=900);
+	window.setTimeout(function(){		
+		anim800('scissors');
+	}, animationClock+=900);
+	window.setTimeout(function(){		
+		anim1500('fa-smile-o', 'YOU SHOT:');	
+	}, animationClock+=900);	
+	window.setTimeout(function(){		
+		anim1500('fa-hand-'+theThrow+'-o', theThrow);
+	}, animationClock+=1600);	
+	window.setTimeout(function(){		
+		anim1500('fa-github-alt', 'OCTO SHOT:');	
+	}, animationClock+=1600);	
+	window.setTimeout(function(){		
+		anim1500('fa-hand-'+enemyThrow+'-o', enemyThrow);
+	}, animationClock+=1600);
 	window.setTimeout(function(){
-		// re-enable controls and update scores
 		updateScores();
-		bindControls();			
-	}, 10000);
+		$('.score').delay(1150).fadeOut(450);
+		$('.round-counter').delay(1150).fadeOut(450);	
+		if(gameStatus == 'win'){
+			anim1500('fa-smile-o', 'YOU WIN!');	
+		} else if(gameStatus == 'lose'){
+			anim1500('fa-github-alt', 'OCTO WINS!');	
+		} else if(gameStatus == 'tie'){
+			anim1500('fa-hand-peace-o', 'TIE GAME!');	
+		}
+	}, animationClock+=1600);	
+	window.setTimeout(function(){
+		clearClasses();
+		$('.animation-container .fa').addClass('fa-thumbs-up');
+		$('.animation-container .message').html('ready round '+roundCounter);
+		$('.animation-container').fadeIn(450).delay(600);
+		window.setTimeout(function(){
+			$('.round-counter .value').html(roundCounter);
+			bindControls();
+		}, 1150);
+	}, animationClock+=1600);
 }
 
 
@@ -108,7 +112,6 @@ function rpsAnimSeq(){
 function updateScores(){
 	$('.user-score .score-value').html(userScore);
 	$('.enemy-score .score-value').html(enemyScore);
-	$('.round-counter .value').html(roundCounter);
 }
 
 
@@ -140,10 +143,10 @@ function gameLogic(){
 	else if(theThrow == 'scissors'){
 		if(enemyThrow == 'rock'){	
 			gameStatus = 'lose';
-			userScore+=1;
+			enemyScore+=1;
 		} else if(enemyThrow == 'paper'){	
 			gameStatus = 'win';
-			enemyScore+=1;
+			userScore+=1;
 		}
 		roundCounter+=1;
 	}
