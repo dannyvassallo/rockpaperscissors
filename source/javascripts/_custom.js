@@ -39,8 +39,8 @@ function rpsAnimSeq(){
 	unbindControls();
 
 	var animationClock = 0;
-	$('.score').fadeIn(450).delay(600);
-	$('.round-counter').fadeIn(450).delay(600);	
+	$('.score').fadeIn(250).delay(300);
+	$('.round-counter').fadeIn(450).delay(300);	
 
 	function clearClasses(){
 		$('.animation-container .fa').removeClass('fa-hand-scissors-o').removeClass('fa-hand-rock-o').removeClass('fa-hand-paper-o').removeClass('fa-github-alt').removeClass('fa-smile-o').removeClass('fa-thumbs-up').removeClass('fa-hand-peace-o').removeClass('fa-gamepad');
