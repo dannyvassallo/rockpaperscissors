@@ -4,7 +4,7 @@
 // ******************** //
 var userScore = 0;
 var enemyScore = 0;
-var roundCounter = 0;
+var roundCounter = 1;
 var userWon;
 var theThrow = '';
 var enemyThrow = '';
@@ -26,15 +26,12 @@ var enemyThrowStrings = [
 // This function takes the class from the user's
 // clicked element and turns it into a string
 // that the "Battle" function can understand
-function userThrow(userInputClass){
-	$(userInputClass).click(function(e){
-		e.preventDefault();
-		theThrow = $(this).attr("class");
-		theThrow = theThrow.replace('button ', '');
-		theThrow = theThrow.replace('control ', '');
-		rpsAnimSeq();
-		// alert("USER THREW: "+theThrow);
-	});
+function userThrow(){	
+	theThrow = $(this).attr("class");
+	theThrow = theThrow.replace('button ', '');
+	theThrow = theThrow.replace('control ', '');
+	gameLogic();
+	rpsAnimSeq();
 }
 
 // the rock paper scissors shoot animation
@@ -43,6 +40,8 @@ function rpsAnimSeq(){
 		$('.animation-container .fa').removeClass('fa-hand-scissors-o').removeClass('fa-hand-rock-o').removeClass('fa-hand-paper-o').removeClass('fa-github-alt').removeClass('fa-smile-o');
 	}
 	function anim(rps){
+		// unbind controls during animation
+		unbindControls();
 		var faIcon = 'fa-hand-'+rps+'-o';
 		clearClasses();
 		$('.animation-container .fa').addClass(faIcon);
@@ -94,19 +93,10 @@ function rpsAnimSeq(){
 	}, 10000);	
 	window.setTimeout(function(){
 		// re-enable controls and update scores
-		updateScores();			
+		updateScores();
+		bindControls();			
 	}, 10000);
 }
-
-// ******************** //
-//       User Input     //
-// ******************** //
-// This registers the users throw on click.
-// It takes the users input on click and calls the previous
-// user throw function
-userThrow('.rock');
-userThrow('.paper');
-userThrow('.scissors');
 
 
 // ******************** //
@@ -122,62 +112,64 @@ function updateScores(){
 }
 
 
+
 // This takes a class applied to all user throw inputs
 // and checks the user throw. The enemy's logic is also decided here.
-function theBattle(theControls){
-	$(theControls).click(function(){
-		// Randomize An Index Number From "EnemyThrowStrings"
-		var randomIndex = Math.floor(Math.random()*enemyThrowStrings.length);
-		// Enemy's Throw
-		enemyThrow = enemyThrowStrings[randomIndex];
-		// alert("ENEMY THREW: "+enemyThrow);
-		// Tie
-		if(theThrow == enemyThrow){
-			// alert('tied TIE GAME');
-			gameStatus = 'tie';
-			roundCounter+=1;
+function gameLogic(){
+// Randomize An Index Number From "EnemyThrowStrings"
+	var randomIndex = Math.floor(Math.random()*enemyThrowStrings.length);
+	// Enemy's Throw
+	enemyThrow = enemyThrowStrings[randomIndex];
+	// Tie
+	if(theThrow == enemyThrow){
+		gameStatus = 'tie';
+		roundCounter+=1;
+	}
+	// User Throws Rock
+	else if(theThrow == 'rock'){
+		if(enemyThrow == 'scissors'){	
+			gameStatus = 'win';
+			userScore+=1;
+		} else if(enemyThrow == 'paper'){	
+			gameStatus = 'lose';
+			enemyScore+=1;
 		}
-		// User Throws Rock
-		else if(theThrow == 'rock'){
-			if(enemyThrow == 'scissors'){
-				// alert('rock beats scissors USER WINS');
-				gameStatus = 'win';
-				userScore+=1;
-			} else if(enemyThrow == 'paper'){
-				// alert('paper covers rock USER LOSES');
-				gameStatus = 'lose';
-				enemyScore+=1;
-			}
-			roundCounter+=1;
+		roundCounter+=1;
+	}
+	// User Throws Scissors
+	else if(theThrow == 'scissors'){
+		if(enemyThrow == 'rock'){	
+			gameStatus = 'lose';
+			userScore+=1;
+		} else if(enemyThrow == 'paper'){	
+			gameStatus = 'win';
+			enemyScore+=1;
 		}
-		// User Throws Scissors
-		else if(theThrow == 'scissors'){
-			if(enemyThrow == 'rock'){
-				// alert('rock beats scissors USER LOSES');
-				gameStatus = 'lose';
-				userScore+=1;
-			} else if(enemyThrow == 'paper'){
-				// alert('scissors cut paper USER WINS');
-				gameStatus = 'win';
-				enemyScore+=1;
-			}
-			roundCounter+=1;
+		roundCounter+=1;
+	}
+	// User Throws Paper
+	else if(theThrow == 'paper'){
+		if(enemyThrow == 'rock'){	
+			gameStatus = 'win';
+			userScore+=1;
+		} else if(enemyThrow == 'scissors'){
+			gameStatus = 'lose';
+			enemyScore+=1;
 		}
-		// User Throws Paper
-		else if(theThrow == 'paper'){
-			if(enemyThrow == 'rock'){
-				// alert('paper covers rock USER WINS');
-				gameStatus = 'win';
-				userScore+=1;
-			} else if(enemyThrow == 'scissors'){
-				// alert('scissors cut paper USER LOSES');
-				gameStatus = 'lose';
-				enemyScore+=1;
-			}
-			roundCounter+=1;
-		}		
-	});
+		roundCounter+=1;
+	}			
 }
 
-// Start the game
-theBattle('.control');
+function bindControls(){
+	$('.rock').bind('click', userThrow);
+	$('.paper').bind('click', userThrow);
+	$('.scissors').bind('click', userThrow);
+}
+
+function unbindControls(){
+	$('.rock').unbind('click', userThrow);
+	$('.paper').unbind('click', userThrow);
+	$('.scissors').unbind('click', userThrow);
+}
+
+bindControls();
