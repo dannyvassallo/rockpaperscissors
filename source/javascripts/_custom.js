@@ -26,70 +26,71 @@ var enemyThrowStrings = [
 // This function takes the class from the user's
 // clicked element and turns it into a string
 // that the "Battle" function can understand
-function userThrow(){	
+function userThrow(){
 	theThrow = $(this).attr("class");
 	theThrow = theThrow.replace('button ', '');
 	theThrow = theThrow.replace('control ', '');
+	theThrow = theThrow.replace(' animate', '');
 	gameLogic();
 	rpsAnimSeq();
 }
 
 // the rock paper scissors shoot animation
 function rpsAnimSeq(){
-	unbindControls();
 
 	var animationClock = 0;
 	$('.score').fadeIn(250).delay(300);
-	$('.round-counter').fadeIn(450).delay(300);	
+	$('.round-counter').fadeIn(450).delay(300);
 
 	function clearClasses(){
+		unbindControls();
 		$('.animation-container .fa').removeClass('fa-hand-scissors-o').removeClass('fa-hand-rock-o').removeClass('fa-hand-paper-o').removeClass('fa-github-alt').removeClass('fa-smile-o').removeClass('fa-thumbs-up').removeClass('fa-hand-peace-o').removeClass('fa-gamepad');
-	}	
-	function anim800(rps){		
+	}
+	function anim800(rps){
 		var faIcon = 'fa-hand-'+rps+'-o';
 		clearClasses();
 		$('.animation-container .fa').addClass(faIcon);
 		$('.animation-container .message').html(rps);
-		$('.animation-container').fadeIn(250).delay(300).fadeOut(250);	
-	}	
-	function anim1500(faClass, message){		
+		$('.animation-container').fadeIn(250).delay(300).fadeOut(250);
+	}
+	function anim1500(faClass, message){
 		clearClasses();
 		$('.animation-container .fa').addClass(faClass);
 		$('.animation-container .message').html(message);
-		$('.animation-container').fadeIn(450).delay(600).fadeOut(450);	
-	}		
+		$('.animation-container').fadeIn(450).delay(600).fadeOut(450);
+	}
 
 	anim800('rock');
 	window.setTimeout(function(){
 		anim800('paper');
 	}, animationClock+=900);
-	window.setTimeout(function(){		
+	window.setTimeout(function(){
 		anim800('scissors');
 	}, animationClock+=900);
-	window.setTimeout(function(){		
-		anim1500('fa-smile-o', 'YOU SHOT:');	
-	}, animationClock+=900);	
-	window.setTimeout(function(){		
+	window.setTimeout(function(){
+		anim1500('fa-smile-o', 'YOU SHOT:');
+	}, animationClock+=900);
+	window.setTimeout(function(){
 		anim1500('fa-hand-'+theThrow+'-o', theThrow);
-	}, animationClock+=1600);	
-	window.setTimeout(function(){		
-		anim1500('fa-github-alt', 'OCTO SHOT:');	
-	}, animationClock+=1600);	
-	window.setTimeout(function(){		
+	}, animationClock+=1600);
+	window.setTimeout(function(){
+		anim1500('fa-github-alt', 'OCTO SHOT:');
+	}, animationClock+=1600);
+	window.setTimeout(function(){
 		anim1500('fa-hand-'+enemyThrow+'-o', enemyThrow);
 	}, animationClock+=1600);
 	window.setTimeout(function(){
 		updateScores();
 		$('.score').delay(1150).fadeOut(450);
-		$('.round-counter').delay(1150).fadeOut(450);	
+		$('.round-counter').delay(1150).fadeOut(450);
 		if(gameStatus == 'win'){
-			anim1500('fa-smile-o', 'YOU WIN!');	
+			anim1500('fa-smile-o', 'YOU WIN!');
 		} else if(gameStatus == 'lose'){
-			anim1500('fa-github-alt', 'OCTO WINS!');	
+			anim1500('fa-github-alt', 'OCTO WINS!');
 		} else if(gameStatus == 'tie'){
-			anim1500('fa-hand-peace-o', 'TIE GAME!');	
+			anim1500('fa-hand-peace-o', 'TIE GAME!');
 		}
-	}, animationClock+=1600);	
+	}, animationClock+=1600);
 	window.setTimeout(function(){
 		clearClasses();
 		$('.animation-container .fa').addClass('fa-thumbs-up');
@@ -130,10 +131,10 @@ function gameLogic(){
 	}
 	// User Throws Rock
 	else if(theThrow == 'rock'){
-		if(enemyThrow == 'scissors'){	
+		if(enemyThrow == 'scissors'){
 			gameStatus = 'win';
 			userScore+=1;
-		} else if(enemyThrow == 'paper'){	
+		} else if(enemyThrow == 'paper'){
 			gameStatus = 'lose';
 			enemyScore+=1;
 		}
@@ -141,10 +142,10 @@ function gameLogic(){
 	}
 	// User Throws Scissors
 	else if(theThrow == 'scissors'){
-		if(enemyThrow == 'rock'){	
+		if(enemyThrow == 'rock'){
 			gameStatus = 'lose';
 			enemyScore+=1;
-		} else if(enemyThrow == 'paper'){	
+		} else if(enemyThrow == 'paper'){
 			gameStatus = 'win';
 			userScore+=1;
 		}
@@ -152,7 +153,7 @@ function gameLogic(){
 	}
 	// User Throws Paper
 	else if(theThrow == 'paper'){
-		if(enemyThrow == 'rock'){	
+		if(enemyThrow == 'rock'){
 			gameStatus = 'win';
 			userScore+=1;
 		} else if(enemyThrow == 'scissors'){
@@ -160,19 +161,41 @@ function gameLogic(){
 			enemyScore+=1;
 		}
 		roundCounter+=1;
-	}			
+	}
 }
 
+function bindAnimationClass(el){
+	$(el).bind('mouseenter', function(){
+		$(this).addClass('animate');
+	});
+	$(el).bind('mouseleave', function(){
+		$(this).removeClass('animate');
+	});
+	$(el).bind('click', function(){
+		$(this).removeClass('animate');
+	});
+}
+
+function unbindAnimationClass(el){
+	$(el).removeClass('animate');
+	$(el).unbind('mouseenter');
+	$(el).unbind('mouseleave');
+	$(el).unbind('click');
+}
+
+// Bind and unbind controls
 function bindControls(){
 	$('.rock').bind('click', userThrow);
 	$('.paper').bind('click', userThrow);
 	$('.scissors').bind('click', userThrow);
+	bindAnimationClass('.control');
 }
 
 function unbindControls(){
 	$('.rock').unbind('click', userThrow);
 	$('.paper').unbind('click', userThrow);
 	$('.scissors').unbind('click', userThrow);
+	unbindAnimationClass('.control');
 }
 
 bindControls();
