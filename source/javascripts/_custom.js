@@ -93,6 +93,7 @@ function rpsAnimSeq(){
 	}, animationClock+=1600);
 	window.setTimeout(function(){
 		clearClasses();
+		endGame();
 		$('.animation-container .fa').addClass('fa-thumbs-up');
 		$('.animation-container .message').html('ready round '+roundCounter);
 		$('.animation-container').fadeIn(450).delay(600);
@@ -199,3 +200,25 @@ function unbindControls(){
 }
 
 bindControls();
+
+function endGame(){
+	if(roundCounter > 3){
+		if(userScore > enemyScore){
+			$('#winModal').modal('toggle');
+			roundCounter = 1;
+			userScore = 0;
+			enemyScore = 0;
+		} else if(userScore < enemyScore){
+			$('#loseModal').modal('toggle');
+			roundCounter = 1;
+			userScore = 0;
+			enemyScore = 0;
+		} else {
+			$('#tieModal').modal('toggle');
+			roundCounter = 1;
+			userScore = 0;
+			enemyScore = 0;
+		}
+	}
+}
+
