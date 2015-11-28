@@ -1,3 +1,99 @@
 ---
 title: Rutgers Rock, Paper, Scissors
 ---
+
+<div id="gameboy" class="gameboy-background">
+	<div class="screen-border">
+		<div class="dotmatrix">
+			<p>dot matrix with stereo sound<p>
+		</div>
+		<div class="dotmatrix-lines">
+			<hr>
+			<hr>
+		</div>
+		<div class="screen">
+			<div class="user-score score">
+				<p>YOU: <span class="score-value">0</span></p>
+			</div>
+			<div class="round-counter">
+				<p>ROUND: <span class="value">1</span></p>
+			</div>
+			<div class="enemy-score score">
+				<p>OCTO CAT: <span class="score-value">0</span></p>
+			</div>
+			<div class="animation-container">
+				<i class="fa fa-gamepad"></i>
+				<span class="message">PRESS START</span>
+			</div>
+		</div>
+	</div>
+	<div class="button control paper"></div>
+	<div class="button control scissors"></div>
+	<a href="#" class="control rock"><i class="fa fa-plus dpad"></i></a>
+	<div class="speakers">
+		<div class="speaker-left">
+			<i class="fa fa-bars"></i>
+			<i class="fa fa-bars"></i>
+		</div>
+		<div class="speaker-right">
+			<i class="fa fa-bars"></i>
+			<i class="fa fa-bars"></i>
+		</div>
+	</div>
+	<div class="select-start">
+		<div class="select">
+			<i class="fa fa-minus"></i>
+			<p>Select</p>
+		</div>
+		<div class="start">
+			<i class="fa fa-minus"></i>
+			<p>Start</p>
+		</div>
+	</div>
+</div>
+
+<!-- modals -->
+
+<!-- Small modal -->
+<div id="winModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="winModal">
+	<div class="modal-dialog modal-sm">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	      <h4 class="modal-title">Hooray!</h4>
+	    </div>
+	    <div class="modal-body">
+	      YOU WON!
+	    </div>
+	  </div><!-- /.modal-content -->
+	</div>
+</div>
+
+<!-- Small modal -->
+<div id="loseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="winModal">
+	<div class="modal-dialog modal-sm">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	      <h4 class="modal-title">Womp womp...</h4>
+	    </div>
+	    <div class="modal-body">
+	      YOU LOST!
+	    </div>
+	  </div><!-- /.modal-content -->
+	</div>
+</div>
+
+<div id="tieModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="winModal">
+	<div class="modal-dialog modal-sm">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	      <h4 class="modal-title">Whoa!</h4>
+	    </div>
+	    <div class="modal-body">
+	      YOU TIED!
+	    </div>
+	  </div><!-- /.modal-content -->
+	</div>
+</div>
