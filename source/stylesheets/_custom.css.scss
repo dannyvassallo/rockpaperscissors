@@ -241,6 +241,40 @@ body{
   margin-top: -10px
 }
 
+.select-start{
+  position: absolute;
+  bottom: 25px;
+  width: 100%
+}
+
+.select, .start{
+  position: relative;
+  text-align: center;
+  font-size: 10px;
+  color: #546e7a;
+  font-family: 'nintenderregular';
+  width: 20%;
+}
+
+.select i, .start i{
+  color: grey;
+  font-size: 35px;
+}
+
+.select p, .start p{
+  margin-top: -7px;
+}
+
+.select{
+  float: left;
+  margin-left: 30%;
+}
+
+.start{
+  float: right;
+  margin-right: 30%;
+  cursor: pointer;
+}
 // PULSE ANIMATION
 // ==============================================
 // pulse
