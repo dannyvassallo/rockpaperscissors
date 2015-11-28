@@ -229,3 +229,31 @@ $('.start').on('click', function(){
 });
 
 bindAnimationClass('.start');
+
+
+// start firebase code
+$(function(){
+
+	var myDataRef = new Firebase('https://rockpaperscissorsrcb.firebaseio.com/');
+	var query = myDataRef.orderByChild("score").limitToFirst(5);
+
+	$('#messageInput').keypress(function (e) {
+	  if (e.keyCode == 13) {
+	    var initials = $('#nameInput').val();
+	    var score = $('#messageInput').val();
+			myDataRef.push({initials: initials, score: score});
+	    $('#messageInput').val('');
+	  }
+	});
+	// callback
+	query.on('child_added', function(snapshot) {
+	  var hiscore = snapshot.val();
+		updateHighScore(hiscore.initials, hiscore.score);
+	});
+
+	function updateHighScore(initials, score) {
+	  $('<div/>').text(score).prepend($('<em/>').text(initials+': ')).appendTo($('#high-scores'));
+	  $('#high-scores')[0].scrollTop = $('#high-scores')[0].scrollHeight;
+	};
+
+});
