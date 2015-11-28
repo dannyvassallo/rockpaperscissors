@@ -199,8 +199,6 @@ function unbindControls(){
 	unbindAnimationClass('.control');
 }
 
-bindControls();
-
 function endGame(){
 	if(roundCounter > 3){
 		if(userScore > enemyScore){
@@ -222,3 +220,12 @@ function endGame(){
 	}
 }
 
+$('.start').on('click', function(){
+	bindControls();
+	unbindAnimationClass('.start');
+	$('.animation-container .fa').addClass('fa-thumbs-up');
+	$('.animation-container .message').html('ready round '+roundCounter);
+	$('.animation-container').fadeIn(450).delay(600);
+});
+
+bindAnimationClass('.start');

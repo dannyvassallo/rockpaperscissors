@@ -274,6 +274,10 @@ body{
   float: right;
   margin-right: 30%;
   cursor: pointer;
+  animation-name: pulse;
+  -webkit-animation-name: pulse;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
 }
 // PULSE ANIMATION
 // ==============================================
