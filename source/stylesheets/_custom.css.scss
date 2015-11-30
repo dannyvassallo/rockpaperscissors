@@ -323,7 +323,7 @@ textarea, input { outline: none; }
 
 #nameInput{
   background: transparent;
-  border: none;
+  display: block;
 }
 #nameInput::-webkit-input-placeholder {
    color: white;
@@ -341,7 +341,10 @@ textarea, input { outline: none; }
 #nameInput,
 #nameInput:focus,
 #nameInput:active {
-  border:none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid;
 }
 
 // remove borders from table
