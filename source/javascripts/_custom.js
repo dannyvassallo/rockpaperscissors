@@ -231,7 +231,7 @@ $('.start').on('click', function(){
 });
 
 bindAnimationClass('.start');
-
+$('.blank-error').hide();
 // Start leaderboard code
 
   var LEADERBOARD_SIZE = 5;
@@ -292,18 +292,23 @@ bindAnimationClass('.start');
   // When the user presses enter on scoreInput, add the score, and update the highest score.
   $("#nameInput").keypress(function (e) {
     if (e.keyCode == 13) {
-      var newScore = Number($("#scoreInput").val());
-      var name = $("#nameInput").val();
-      $("#scoreInput").val("");
+      if($("#nameInput").val().trim() != ""){
+        var newScore = Number($("#scoreInput").val());
+        var name = $("#nameInput").val();
+        $('.blank-error').hide();
+        $("#scoreInput").val("");
 
-      if (name.length === 0)
-        return;
+        if (name.length === 0)
+          return;
 
-      var userScoreRef = scoreListRef.child(name);
-      $("#nameInput").val("");
-      $("#winModal").modal('toggle');
+        var userScoreRef = scoreListRef.child(name);
+        $("#nameInput").val("");
+        $("#winModal").modal('toggle');
 
-      // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-      userScoreRef.setWithPriority({ name:name, score:newScore }, newScore);
+        // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
+        userScoreRef.setWithPriority({ name:name, score:newScore }, newScore);
+      } else {
+        $('.blank-error').fadeIn();
+      }
     }
   });

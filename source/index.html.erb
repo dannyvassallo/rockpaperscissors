@@ -64,8 +64,9 @@ title: Rutgers Rock, Paper, Scissors
 	    </div>
 	    <div class="modal-body">
 	      YOU WON!
-	      <input class="example-leaderboard-name" type="text" id="nameInput" placeholder="Enter Your Initials">
-		    <input class="example-leaderboard-score" type="text" id="scoreInput" placeholder="Record your score...">
+	      <input class="example-leaderboard-name" type="text" id="nameInput" minlength="3" maxlength="3" placeholder="Enter Your Initials">
+	      <p class='blank-error'>Cannot Be Blank!</p>
+		    <input class="example-leaderboard-score" type="text" id="scoreInput">
 	    </div>
 	  </div><!-- /.modal-content -->
 	</div>
