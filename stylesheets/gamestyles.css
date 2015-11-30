@@ -1,0 +1,362 @@
+body{
+  background-image: url('../images/abstract-background.svg')
+}
+
+@font-face {
+    font-family: 'nintenderregular';
+    src: url('../fonts/nintender_wip-webfont.eot');
+    src: url('../fonts/nintender_wip-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/nintender_wip-webfont.woff2') format('woff2'),
+         url('../fonts/nintender_wip-webfont.woff') format('woff'),
+         url('../fonts/nintender_wip-webfont.ttf') format('truetype'),
+         url('../fonts/nintender_wip-webfont.svg#nintenderregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'early_gameboyregular';
+    src: url('../fonts/early_gameboy-webfont.eot');
+    src: url('../fonts/early_gameboy-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/early_gameboy-webfont.woff2') format('woff2'),
+         url('../fonts/early_gameboy-webfont.woff') format('woff'),
+         url('../fonts/early_gameboy-webfont.ttf') format('truetype'),
+         url('../fonts/early_gameboy-webfont.svg#early_gameboyregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.gameboy-background{
+  background-color: #eeeeee;
+  box-shadow: 2px 2px 0px #e0e0e0;
+  height: 500px;
+  width: 300px;
+  border-radius: 0.5em 0.5em 5em 0.5em;
+  margin: 0 auto;
+  position: relative;
+}
+
+.screen-border{
+  background-color: #757575;
+  height: 40%;
+  width: 80%;
+  border-radius: 1em 1em 3em 1em;
+  margin-top: 14%;
+  position: absolute;
+  margin-left: 10%;
+}
+.screen-border:after{
+  font-family: 'nintenderregular';
+  content: 'RutgersCB';
+  color: #546e7a;
+}
+
+.screen{
+  background-color: #7cb342;
+  height: 75%;
+  width: 75%;
+  border-radius: 0.3em;
+  border: 2px #333 solid;
+  margin: 10% auto;
+  position: relative;
+  z-index: 3;
+}
+
+.dotmatrix{
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  position: absolute;
+  width: 68%;
+  font-size: 10px;
+  top: 5px;
+  left: 16%;
+  background-color: #757575;
+  z-index: 2;
+}
+
+.dotmatrix-lines{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 90%;
+  left: 5%;
+  z-index: 1;
+}
+.dotmatrix-lines hr{
+  margin-top: 7px;
+  margin-bottom: 0;
+}
+.dotmatrix-lines hr:nth-child(1){
+  border: 1px solid #880e4f;
+}
+.dotmatrix-lines hr:nth-child(2){
+  border: 1px solid #546e7a;
+}
+
+.dpad{
+  font-size: 7em;
+  text-shadow: 0px 4px 0px #9e9e9e;
+  bottom: 20%;
+  left: 10%;
+  position: absolute;
+  cursor: pointer;
+}
+.dpad:after{
+  font-family: 'nintenderregular';
+  content: 'Rock';
+  color: #546e7a;
+  font-size: 10px;
+  position: absolute;
+  text-shadow: none;
+  left: 32%;
+  bottom: -5%;
+}
+
+.button{
+  position: absolute;
+  border-radius: 50%;
+  background-color: #880e4f;
+  box-shadow: 0px 2px 0px #9e9e9e;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.control{
+  animation-name: pulse;
+  -webkit-animation-name: pulse;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.animate {
+  animation-play-state: running;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+}
+
+.scissors{
+  top: 69%;
+  right: 30%;
+}
+.scissors:after{
+  font-family: 'nintenderregular';
+  content: 'Scissors';
+  color: #546e7a;
+  font-size: 10px;
+  position: absolute;
+  text-shadow: none;
+  left: -10%;
+  bottom: -45%;
+}
+
+.paper{
+  top: 65%;
+  right: 10%;
+}
+.paper:after{
+  font-family: 'nintenderregular';
+  content: 'Paper';
+  color: #546e7a;
+  font-size: 10px;
+  position: absolute;
+  text-shadow: none;
+  left: 7%;
+  bottom: -45%;
+}
+
+.rock,
+.rock:hover,
+.rock:focus,
+.rock:active{
+ color: #333333;
+}
+
+.speakers{
+  position: absolute;
+  width: 80px;
+  -ms-transform: rotate(-111deg);
+  -webkit-transform: rotate(-111deg);
+  transform: rotate(-111deg);
+  bottom: 10%;
+  right: 11%;
+  opacity: 0.7;
+}
+.speaker-right{
+  margin-top: -4px;
+  position: absolute;
+}
+.speaker-left i,
+.speaker-right i{
+  font-size: 2em;
+}
+.speaker-left i:nth-child(2),
+.speaker-right i:nth-child(2){
+  margin-left: -12px;;
+}
+.score, .round-counter{
+  font-family: 'early_gameboyregular';
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 10px;
+  display: none;
+}
+.round-counter{
+  text-align: right;
+  right: 10px;
+  top: 15px;
+}
+.user-score{
+  text-align: left;
+  top: 15px;
+  left: 10px;
+}
+.enemy-score{
+  text-align: right;
+  bottom: 2px;
+  right: 10px;
+}
+.animation-container{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  // display: none;
+}
+.animation-container i{
+  display: block;
+  font-size: 65px;
+  margin-top: 30px;
+}
+.animation-container .message{
+  font-family: 'early_gameboyregular';
+  margin-top: -10px
+}
+
+.select-start{
+  position: absolute;
+  bottom: 25px;
+  width: 100%
+}
+
+.select, .start{
+  position: relative;
+  text-align: center;
+  font-size: 10px;
+  color: #546e7a;
+  font-family: 'nintenderregular';
+  width: 20%;
+}
+
+.select i, .start i{
+  color: grey;
+  font-size: 35px;
+}
+
+.select p, .start p{
+  margin-top: -7px;
+}
+
+.select{
+  float: left;
+  margin-left: 30%;
+}
+
+.start{
+  float: right;
+  margin-right: 30%;
+  cursor: pointer;
+  animation-name: pulse;
+  -webkit-animation-name: pulse;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+
+ .pulse{
+
+ }
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.95);
+  }
+  50% {
+    -webkit-transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.95);
+  }
+}
+
+#scoreInput{
+  display: none;
+}
+
+textarea, input { outline: none; }
+
+#nameInput{
+  background: transparent;
+  display: block;
+}
+#nameInput::-webkit-input-placeholder {
+   color: white;
+}
+#nameInput:-moz-placeholder {
+   color: white;
+}
+#nameInput::-moz-placeholder {
+   color: white;
+}
+#nameInput:-ms-input-placeholder {
+   color: white;
+}
+
+#nameInput,
+#nameInput:focus,
+#nameInput:active {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid;
+}
+
+.table-responsive,
+.borderless td,
+.borderless th {
+    border: none !important;
+}
+
+.leaderboard h4{
+  font-family: 'nintenderregular';
+  color: white;
+}
+
+ .leaderboard{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: 'nintenderregular';
+  color: white;
+  background-color: #222222;
+  border-radius: 15px;
+  padding: 20px;
+ }
+
+.blank-error{
+  color: red;
+  font-size: 11px;
+}

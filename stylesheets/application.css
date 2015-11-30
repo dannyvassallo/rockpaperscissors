@@ -1,0 +1,14 @@
+/*Import Open Sans*/
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,700';
+/*Import Bootswatch COSMO theme*/
+@import 'cosmo-bootstrap.css';
+/*Import Font Awesome*/
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
+/*Import Custom Game Styles*/
+@import 'gamestyles.css';
+/*Import Navbar Overrides*/
+@import 'navbar.css';
+/*Import Modal Overrides*/
+@import 'modal.css';
+/*Import Styles associated with sticky footer*/
+@import 'stickyfooter.css';
