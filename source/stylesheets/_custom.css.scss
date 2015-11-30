@@ -311,3 +311,43 @@ body{
     -webkit-transform: scale(0.95);
   }
 }
+
+// Hide score input
+
+#scoreInput{
+  display: none;
+}
+
+// style initials input
+textarea, input { outline: none; }
+
+#nameInput{
+  background: transparent;
+  border: none;
+}
+#nameInput::-webkit-input-placeholder {
+   color: white;
+}
+#nameInput:-moz-placeholder {
+   color: white;
+}
+#nameInput::-moz-placeholder {
+   color: white;
+}
+#nameInput:-ms-input-placeholder {
+   color: white;
+}
+
+#nameInput,
+#nameInput:focus,
+#nameInput:active {
+  border:none;
+}
+#nameInput {
+  animation: blink-empty 1s infinite;
+  border-left: transparent solid 1px;
+  margin:5px;
+}
+@keyframes blink-empty {
+  50% {border-left: 1px solid #fff;}
+}

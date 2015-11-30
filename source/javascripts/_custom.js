@@ -201,6 +201,8 @@ function unbindControls(){
 
 function endGame(){
 	if(roundCounter > 3){
+		// set score for firebase
+		$('#scoreInput').val(userScore);
 		if(userScore > enemyScore){
 			$('#winModal').modal('toggle');
 			roundCounter = 1;
@@ -288,7 +290,7 @@ bindAnimationClass('.start');
   scoreListView.on('child_changed', changedCallback);
 
   // When the user presses enter on scoreInput, add the score, and update the highest score.
-  $("#scoreInput").keypress(function (e) {
+  $("#nameInput").keypress(function (e) {
     if (e.keyCode == 13) {
       var newScore = Number($("#scoreInput").val());
       var name = $("#nameInput").val();
@@ -298,6 +300,8 @@ bindAnimationClass('.start');
         return;
 
       var userScoreRef = scoreListRef.child(name);
+      $("#nameInput").val("");
+      $("#winModal").modal('toggle');
 
       // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
       userScoreRef.setWithPriority({ name:name, score:newScore }, newScore);
