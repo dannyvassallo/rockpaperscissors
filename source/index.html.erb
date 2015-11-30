@@ -64,6 +64,9 @@ title: Rutgers Rock, Paper, Scissors
 	    </div>
 	    <div class="modal-body">
 	      YOU WON!
+	      <input class="example-leaderboard-name" type="text" id="nameInput" minlength="3" maxlength="3" placeholder="Enter Your Initials">
+	      <p class='blank-error'>Cannot Be Blank!</p>
+		    <input class="example-leaderboard-score" type="text" id="scoreInput">
 	    </div>
 	  </div><!-- /.modal-content -->
 	</div>
@@ -95,5 +98,24 @@ title: Rutgers Rock, Paper, Scissors
 	      YOU TIED!
 	    </div>
 	  </div><!-- /.modal-content -->
+	</div>
+</div>
+
+<!-- leaderboard -->
+
+<div id="leaderboard" class="container">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 leaderboard">
+			<h4>Top 5 Scores</h4>
+			<hr>
+			<div class="table-responsive">
+			  <table id="leaderboardTable" class="table borderless">
+					<tr>
+						<th>Player</th>
+						<th>Score</th>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
