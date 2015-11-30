@@ -351,3 +351,27 @@ textarea, input { outline: none; }
 @keyframes blink-empty {
   50% {border-left: 1px solid #fff;}
 }
+
+// remove borders from table
+.table-responsive,
+.borderless td,
+.borderless th {
+    border: none !important;
+}
+
+// leaderboard styles
+
+.leaderboard h4{
+  font-family: 'nintenderregular';
+  color: white;
+}
+
+ .leaderboard{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: 'nintenderregular';
+  color: white;
+  background-color: #222222;
+  border-radius: 15px;
+  padding: 20px;
+ }
