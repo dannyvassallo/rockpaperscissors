@@ -343,14 +343,6 @@ textarea, input { outline: none; }
 #nameInput:active {
   border:none;
 }
-#nameInput {
-  animation: blink-empty 1s infinite;
-  border-left: transparent solid 1px;
-  margin:5px;
-}
-@keyframes blink-empty {
-  50% {border-left: 1px solid #fff;}
-}
 
 // remove borders from table
 .table-responsive,
