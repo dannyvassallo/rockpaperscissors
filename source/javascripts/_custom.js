@@ -200,7 +200,7 @@ function unbindControls(){
 }
 
 function endGame(){
-	if(roundCounter > 3){
+	if(roundCounter > 10){
 		// set score for firebase
 		$('#scoreInput').val(userScore);
 		if(userScore > enemyScore){
