@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="stylesheets/application.css">
+</head>
+<body>
+
+  <!-- navbar -->
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Rock Paper Scissors</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- gameboy -->
+  <div id="gameboy" class="gameboy-background">
+    <div class="screen-border">
+      <div class="dotmatrix">
+        <p>dot matrix with stereo sound<p>
+      </div>
+      <div class="dotmatrix-lines">
+        <hr>
+        <hr>
+      </div>
+      <div class="screen">
+        <div class="user-score score">
+          <p>YOU: <span class="score-value">0</span></p>
+        </div>
+        <div class="round-counter">
+          <p>ROUND: <span class="value">1</span></p>
+        </div>
+        <div class="enemy-score score">
+          <p>OCTO CAT: <span class="score-value">0</span></p>
+        </div>
+        <div class="animation-container">
+          <i class="fa fa-gamepad"></i>
+          <span class="message">PRESS START</span>
+        </div>
+      </div>
+    </div>
+    <div class="button control paper"></div>
+    <div class="button control scissors"></div>
+    <a href="#" class="control rock"><i class="fa fa-plus dpad"></i></a>
+    <div class="speakers">
+      <div class="speaker-left">
+        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars"></i>
+      </div>
+      <div class="speaker-right">
+        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars"></i>
+      </div>
+    </div>
+    <div class="select-start">
+      <div class="select">
+        <i class="fa fa-minus"></i>
+        <p>Select</p>
+      </div>
+      <div class="start">
+        <i class="fa fa-minus"></i>
+        <p>Start</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- leaderboard -->
+  <div id="leaderboard" class="container">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 leaderboard">
+        <h4>Top 5 Scores</h4>
+        <hr>
+        <div class="table-responsive">
+          <table id="leaderboardTable" class="table borderless">
+            <tr>
+              <th>Player</th>
+              <th>Score</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- win modal -->
+  <div id="winModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="winModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Hooray!</h4>
+        </div>
+        <div class="modal-body">
+          YOU WON!
+          <input class="example-leaderboard-name" type="text" id="nameInput" minlength="3" maxlength="3" placeholder="Enter Your Initials">
+          <p class='blank-error'>Cannot Be Blank!</p>
+          <input class="example-leaderboard-score" type="text" id="scoreInput">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- lose modal -->
+  <div id="loseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="winModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Womp womp...</h4>
+        </div>
+        <div class="modal-body">
+          YOU LOST!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- tie modal -->
+  <div id="tieModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="winModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Whoa!</h4>
+        </div>
+        <div class="modal-body">
+          YOU TIED!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sticky footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <p>Made with <i class="fa fa-heart"></i> by RCB</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOAD ORDER -->
+  <!-- FIREBASE FIRST -->
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <!-- JQUERY SECOND -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <!-- BOOTSTRAP THIRD -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- INCLUDE APP SCRIPTS -->
+  <script src="./javascripts/game.js"></script>
+</body>
+</html>
